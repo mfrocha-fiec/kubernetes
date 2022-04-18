@@ -19,11 +19,40 @@ Adicionar o repositório do Helm com:
 ```
 helm repo add pfisterer-hadoop https://pfisterer.github.io/apache-hadoop-helm/
 ```
+
+## Inicialização do cluster
+
+**Execução**: Nó mestre.
+
 Agora com o repositório adicionado, podemos inicializar um cluster com 1GB e 2 réplicas com:
 
 ```
 helm install hadoop pfisterer-hadoop/hadoop --set yarn.nodeManager.resources.limits.memory=1024Mi --set yarn.nodeManager.replicas=2
 ```
+
+## Inicialização das UIs
+
+**Execução**: Nó mestre.
+
+Para poder explorar as UIs do Hadoop, que seriam no caso o YARN Manager e o HDFS Manager, é necessário fazer o forwarding das duas portas desses serviços, que são a 8088 e a 9870, respectivamente.
+
+```
+kubectl port-forward -n default hadoop-hadoop-yarn-rm-0 8088:8088
+kubectl port-forward -n default hadoop-hadoop-hdfs-nn-0 9870:9870
+```
+Caso esteja executando uma VM e não esteja conseguindo acessar a URL do seu browser, tente fazer o SSL da porta com o seguinte comando:
+
+```
+ssh -L 8088:localhost:8088 user@xxx.xxx.x.xxx
+ssh -L 9870:localhost:9870 user@xxx.xxx.x.xxx
+```
+
+Onde "user" seria o user da VM do nó mestre e "xxx.xxx.x.xxx" o IP do nó mestre. 
+
+## Adição de nós no HDFS
+
+
+
 
 ## Referências
 * https://helm.sh/docs/intro/install/
