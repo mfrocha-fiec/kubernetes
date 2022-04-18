@@ -27,7 +27,7 @@ helm repo add pfisterer-hadoop https://pfisterer.github.io/apache-hadoop-helm/
 Agora com o repositório adicionado, podemos inicializar um cluster com 2 slaves com:
 
 ```
-helm install hadoop pfisterer-hadoop/hadoop --set hdfs.dataNode.replicas=2
+helm install hadoop pfisterer-hadoop/hadoop --set yarn.nodeManager.resources.limits.memory=4096Mi --set yarn.nodeManager.replicas=1 --set hdfs.dataNode.replicas=2
 ```
 
 Podemos checar se o deploy foi bem sucedido vendo o output do `dfsadmin -report` com:
@@ -64,6 +64,9 @@ Executar um job de MapReduce padronizados do hadoop.
 ```
 kubectl exec -n default -it hadoop-hadoop-yarn-nm-0 -- /opt/hadoop/bin/hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-3.3.2-tests.jar TestDFSIO -write -nrFiles 5 -fileSize 128MB -resFile /tmp/TestDFSIOwrite.txt
 ```
+
+## Configuração do Volume Persistente
+
 
 
 ## Referências
