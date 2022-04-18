@@ -59,9 +59,6 @@ Executar um job de MapReduce padronizados do hadoop.
 kubectl exec -n default -it hadoop-hadoop-yarn-nm-0 — /usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-3.3.0-tests.jar TestDFSIO -write -nrFiles 5 -fileSize 128MB -resFile /tmp/TestDFSIOwrite.txt
 ```
 
-## Adição de nós no HDFS
-
-
 
 ## Referências
 * https://helm.sh/docs/intro/install/
