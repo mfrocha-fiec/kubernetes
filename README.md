@@ -24,10 +24,10 @@ helm repo add pfisterer-hadoop https://pfisterer.github.io/apache-hadoop-helm/
 
 **Execução**: Nó mestre.
 
-Agora com o repositório adicionado, podemos inicializar um cluster com 1GB e 2 réplicas com:
+Agora com o repositório adicionado, podemos inicializar um cluster com 2 slaves com:
 
 ```
-helm install hadoop pfisterer-hadoop/hadoop --set yarn.nodeManager.resources.limits.memory=1024Mi --set yarn.nodeManager.replicas=2
+helm install hadoop pfisterer-hadoop/hadoop --set hdfs.dataNode.replicas=2
 ```
 
 ## Inicialização das UIs
@@ -49,8 +49,17 @@ ssh -L 9870:localhost:9870 user@xxx.xxx.x.xxx
 
 Onde "user" seria o user da VM do nó mestre e "xxx.xxx.x.xxx" o IP do nó mestre. 
 
-## Adição de nós no HDFS
+## Teste do MapReduce
 
+**Execução**: Nó mestre.
+
+Executar um job de MapReduce padronizados do hadoop.
+
+```
+kubectl exec -n default -it hadoop-hadoop-yarn-nm-0 — /usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-3.3.0-tests.jar TestDFSIO -write -nrFiles 5 -fileSize 128MB -resFile /tmp/TestDFSIOwrite.txt
+```
+
+## Adição de nós no HDFS
 
 
 
