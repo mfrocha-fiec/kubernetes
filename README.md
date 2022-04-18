@@ -30,7 +30,7 @@ Agora com o repositório adicionado, podemos inicializar um cluster com 2 slaves
 helm install hadoop pfisterer-hadoop/hadoop --set hdfs.dataNode.replicas=2
 ```
 
-Podemos checar se o deploy foi bem sucedido vendo o output do dfsadmin -report com:
+Podemos checar se o deploy foi bem sucedido vendo o output do `dfsadmin -report` com:
 
 ```
 kubectl exec -n default -it hadoop-hadoop-hdfs-nn-0 -- /opt/hadoop/bin/hdfs dfsadmin -report
@@ -40,7 +40,7 @@ kubectl exec -n default -it hadoop-hadoop-hdfs-nn-0 -- /opt/hadoop/bin/hdfs dfsa
 
 **Execução**: Nó mestre.
 
-Para poder explorar as UIs do Hadoop, que seriam no caso o YARN Manager e o HDFS Manager, é necessário fazer o forwarding das duas portas desses serviços, que são a 8088 e a 9870, respectivamente.
+Para poder explorar as UIs do Hadoop, que seriam no caso o YARN Manager e o HDFS Manager, é necessário fazer o forwarding das duas portas desses serviços, que são a `8088` e a `9870`, respectivamente.
 
 ```
 kubectl port-forward -n default hadoop-hadoop-yarn-rm-0 8088:8088
@@ -53,7 +53,7 @@ ssh -L 8088:localhost:8088 user@xxx.xxx.x.xxx
 ssh -L 9870:localhost:9870 user@xxx.xxx.x.xxx
 ```
 
-Onde "user" seria o user da VM do nó mestre e "xxx.xxx.x.xxx" o IP do nó mestre. 
+Onde `user` seria o user da VM do nó mestre e `xxx.xxx.x.xxx` o IP do nó mestre. 
 
 ## Teste do MapReduce
 
