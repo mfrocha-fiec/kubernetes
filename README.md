@@ -72,3 +72,5 @@ kubectl exec -n default -it hadoop-hadoop-yarn-nm-0 -- /opt/hadoop/bin/hadoop ja
 ## Referências
 * https://helm.sh/docs/intro/install/
 * https://github.com/pfisterer/apache-hadoop-helm
+* https://medium.datadriveninvestor.com/deploying-hadoop-in-kubernetes-via-helm-45acd1582a9f
+* https://artifacthub.io/packages/helm/apache-hadoop-helm/hadoop
