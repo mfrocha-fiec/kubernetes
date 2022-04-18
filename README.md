@@ -30,6 +30,12 @@ Agora com o repositório adicionado, podemos inicializar um cluster com 2 slaves
 helm install hadoop pfisterer-hadoop/hadoop --set hdfs.dataNode.replicas=2
 ```
 
+Podemos checar se o deploy foi bem sucedido vendo o output do dfsadmin -report com:
+
+```
+kubectl exec -n default -it hadoop-hadoop-hdfs-nn-0 -- /opt/hadoop/bin/hdfs dfsadmin -report
+```
+
 ## Inicialização das UIs
 
 **Execução**: Nó mestre.
